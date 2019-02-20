@@ -4,10 +4,7 @@ namespace CaesarCipher;
 
 /**
  * Caesar Cipher class.
- * Provides:
- * - encryption & decryption via Caesar Cipher algorithm;
- * - from uploaded text files;
- * - cracking of cipher via frequency analysis.
+ * Provides encryption & decryption via Caesar Cipher algorithm.
  */
 class CaesarCipher
 {
@@ -28,7 +25,7 @@ class CaesarCipher
         if ($alphabet === null) {
             $asciiPrintable  = range(
                 chr(0),
-                chr(126)
+                chr(255)
             );
             $alphabet = $asciiPrintable;
         }
@@ -101,19 +98,6 @@ class CaesarCipher
     public function generateKey(): int
     {
         return mt_rand($this->getKeyValueRange());
-    }
-
-    /**
-     * @param string $cipherText
-     * @return integer
-     */
-    public function crack(string $cipherText): int
-    {
-        $plainTexts = [];
-        foreach ($this->getKeyValueRange() as $key) {
-            $plainTexts[$key] = substr_count(strtolower($this->decrypt($cipherText, $key)), 'e');
-        }
-        return array_search(max($plainTexts), $plainTexts);
     }
 
     /**

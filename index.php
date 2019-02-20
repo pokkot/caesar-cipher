@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<h3>Caesar Cipher</h3>
+<h2>Caesar Cipher</h2>
 
 <div class="errors">
     <?php
@@ -27,24 +27,25 @@
 </div>
 
 <form action="handler.php" method="post" class="upload-form" enctype="multipart/form-data">
-    <label for="plain-text">Enter the plaintext:</label><br>
+    <label for="plain-text">Enter the plaintext or ciphertext:</label><br>
     <textarea name="plain-text" id="plain-text" cols="60" rows="10"><? echo $_SESSION['input'] ?? 'Hello, world!' ?></textarea>
 
     <label for="filename">...or upload text file:</label>
     <input type="file" id="file" name="file" accept="text/plain">
 
     <label for="key">Encryption key:</label>
-    <input type="number" name="key" id="key" placeholder="Number form 1 to 33" value="<? echo $_SESSION['key'] ?? '3' ?>">
+    <input type="number" name="key" id="key" value="<? echo $_SESSION['key'] ?? '3' ?>">
 
     <input type="submit" name="action" value="Encrypt">
     <input type="submit" name="action" value="Decrypt">
-    <input type="submit" name="action" value="Crack">
 </form>
 
 <div id="result">
-    <label for="cipher">Encryption result:</label><br>
+    <label for="cipher">Result:</label><br>
     <textarea name="cipher" id="cipher" cols="60" rows="10"><? echo $_SESSION['output'] ?? '' ?></textarea>
 </div>
+
+<p class="author">by Oleg Evgrashin</p>
 
 </body>
 </html>

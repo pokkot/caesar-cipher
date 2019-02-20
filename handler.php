@@ -6,11 +6,10 @@ use CaesarCipher\CaesarCipher;
 
 const ENCRYPT = 'Encrypt';
 const DECRYPT = 'Decrypt';
-const CRACK   = 'Crack';
 
 if (isset($_POST)) {
     $action = $_POST['action'];
-    if ($action !== ENCRYPT && $action !== DECRYPT && $action !== CRACK) {
+    if ($action !== ENCRYPT && $action !== DECRYPT) {
         $_SESSION['error'][] = 'not supported action';
         redirectToIndex();
     }
@@ -30,14 +29,9 @@ if (isset($_POST)) {
     }
 
     $cipher = new CaesarCipher();
-    if ($action === CRACK) {
-        $_SESSION['key'] = $cipher->crack($plainText);
-        redirectToIndex();
-    }
-
-    $alphabetSize = $cipher->getAlphabetSize();
-    if ($key <= 0 || $key > $alphabetSize) {
-        $_SESSION['error'][] = sprintf('key should be a number in range from 1 to %d', $alphabetSize);
+    $maxKey = $cipher->getAlphabetSize() - 1;
+    if ($key <= 0 || $key > $maxKey) {
+        $_SESSION['error'][] = sprintf('key should be a number in range from 1 to %d', $maxKey);
     }
 
     if ($_SESSION['error']) {

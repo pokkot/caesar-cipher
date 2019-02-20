@@ -4,7 +4,7 @@ body {
 
 input, textarea {
     display: block;
-    margin: 5px auto 10px;
+    margin: 5px auto 16px;
     position: relative;
     left: 0;
     right: 0;
@@ -12,11 +12,16 @@ input, textarea {
 
 input[type='submit'] {
     display: inline-block;
-    margin: 5px 3px 10px;
+    margin: 5px 3px 16px;
     width: 80px;
     height: 40px;
 }
 
 .errors {
     color: rgba(240, 35, 35, 0.7);
+}
+
+.author {
+    color: #ccc;
+    font-size: 12pt;
 }
