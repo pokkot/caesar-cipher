@@ -17,11 +17,31 @@ input[type='submit'] {
     height: 40px;
 }
 
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul > li {
+    padding: 5px;
+}
+
+.btn-to-home {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
 .errors {
     color: rgba(240, 35, 35, 0.7);
 }
 
 .author {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
     color: #ccc;
     font-size: 12pt;
 }

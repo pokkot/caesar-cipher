@@ -11,39 +11,13 @@
 </head>
 <body>
 
-<h2>Caesar Cipher</h2>
+<h2>Cryptography</h2>
 
-<div class="errors">
-    <?php
-    if (isset($_SESSION['error'])) {
-        echo '<ul>';
-        foreach ($_SESSION['error'] as $error) {
-            echo '<li>'.$error.'</li>';
-        }
-        echo '</ul>';
-        $_SESSION['error'] = [];
-    }
-    ?>
-</div>
-
-<form action="handler.php" method="post" class="upload-form" enctype="multipart/form-data">
-    <label for="plain-text">Enter the plaintext or ciphertext:</label><br>
-    <textarea name="plain-text" id="plain-text" cols="60" rows="10"><? echo $_SESSION['input'] ?? 'Hello, world!' ?></textarea>
-
-    <label for="filename">...or upload text file:</label>
-    <input type="file" id="file" name="file" accept="text/plain">
-
-    <label for="key">Encryption key:</label>
-    <input type="number" name="key" id="key" value="<? echo $_SESSION['key'] ?? '3' ?>">
-
-    <input type="submit" name="action" value="Encrypt">
-    <input type="submit" name="action" value="Decrypt">
-</form>
-
-<div id="result">
-    <label for="cipher">Result:</label><br>
-    <textarea name="cipher" id="cipher" cols="60" rows="10"><? echo $_SESSION['output'] ?? '' ?></textarea>
-</div>
+<ul>
+    <li><a href="labs/caesar/index.php">Caesar</a></li>
+    <li><a href="labs/vernam/index.php">Vernam</a></li>
+    <li><a href="labs/rc4/index.php"></a>RC4</li>
+</ul>
 
 <p class="author">by Oleg Evgrashin</p>
 

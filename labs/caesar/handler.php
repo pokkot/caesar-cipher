@@ -29,7 +29,7 @@ if (isset($_POST)) {
     }
 
     $cipher = new CaesarCipher();
-    $maxKey = $cipher->getAlphabetSize() - 1;
+    $maxKey = $cipher->getAlphabetSize();
     if ($key <= 0 || $key > $maxKey) {
         $_SESSION['error'][] = sprintf('key should be a number in range from 1 to %d', $maxKey);
     }
