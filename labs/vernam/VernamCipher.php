@@ -70,13 +70,10 @@ class VernamCipher
 
     public function charByCharXor(string $str1, string $str2): string
     {
-        $chars1 = str_split($str1);
-        $chars2 = str_split($str2);
-
-        $resultChars = [];
-        foreach ($chars1 as $i => $char) {
-            $ascii = (ord($chars1[$i])) ^ (ord($chars2[$i]));
-
+        $result = '';
+        $n = strlen($str1);
+        for ($i = 0; $i < $n; $i++) {
+            $ascii = ord ($str1{$i} ^ $str2{$i});
             $min = 32;
             $max = 126;
             if ($ascii > $max) {
@@ -85,10 +82,8 @@ class VernamCipher
             if ($ascii < $min) {
                 $ascii = $ascii + $min;
             }
-
-            $resultChars[] = chr($ascii);
+            $result .= chr($ascii);
         }
-        $result = implode('', $resultChars);
 
         return $result;
     }
