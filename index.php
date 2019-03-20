@@ -16,7 +16,7 @@
 <ul>
     <li><a href="labs/caesar/index.php">Caesar</a></li>
     <li><a href="labs/vernam/index.php">Vernam</a></li>
-    <li><a href="labs/rc4/index.php"></a>RC4</li>
+    <li><a href="labs/rc4/index.php">RC4</a></li>
 </ul>
 
 <p class="author">by Oleg Evgrashin</p>
