@@ -30,13 +30,13 @@
 
 <form action="handler.php" method="post" class="upload-form" enctype="multipart/form-data">
     <label for="plain-text">Enter the plaintext or ciphertext:</label><br>
-    <textarea name="plain-text" id="plain-text" cols="60" rows="10"><? echo $_SESSION['input'] ?? 'Hello, world!' ?></textarea>
+    <textarea name="plain-text" id="plain-text" cols="60" rows="8"><? echo $_SESSION['vernam_input'] ?? 'Hello, world!' ?></textarea>
 
     <label for="filename">...or upload text file:</label>
     <input type="file" id="file" name="file" accept="text/plain">
 
     <label for="key">Encryption key:</label>
-    <input name="key" id="key" value="<? echo $_SESSION['key'] ?? ''; ?>">
+    <textarea name="key" id="key" cols="60" rows="8"><? echo $_SESSION['vernam_key'] ?? 'keyword' ?></textarea>
 
     <input type="submit" name="action" value="Encrypt">
     <input type="submit" name="action" value="Decrypt">
@@ -44,7 +44,7 @@
 
 <div id="result">
     <label for="cipher">Result:</label><br>
-    <textarea name="cipher" id="cipher" cols="60" rows="10"><? echo $_SESSION['output'] ?? '' ?></textarea>
+    <textarea name="cipher" id="cipher" cols="60" rows="8"><? echo $_SESSION['vernam_output'] ?? '' ?></textarea>
 </div>
 
 <p class="author">by Oleg Evgrashin</p>

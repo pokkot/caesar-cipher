@@ -38,9 +38,9 @@ if (isset($_POST)) {
         redirectToIndex();
     }
 
-    $_SESSION['input']  = $plainText;
-    $_SESSION['key']    = $key;
-    $_SESSION['output'] =
+    $_SESSION['caesar_input']  = $plainText;
+    $_SESSION['caesar_key']    = $key;
+    $_SESSION['caesar_output'] =
         $action === ENCRYPT
         ? $cipher->encrypt($plainText, $key)
         : $cipher->decrypt($plainText, $key);

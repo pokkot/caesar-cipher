@@ -41,19 +41,13 @@ if (isset($_POST)) {
     $cipher = new VernamCipher();
     if ($action === ENCRYPT) {
         $key = $cipher->makeKey(strlen($plainText));
-//        $keyFilename = basename($_FILES['file']['name'], '.txt') . '_key.txt';
-//        header('Content-Disposition: attachment; type="text/plain"; filename="' . $keyFilename . '"');
-//        echo $key;
     }
-//    else {
         header('Location: ' . 'index.php');
-//    }
-
 
     try {
-        $_SESSION['input']  = $plainText;
-        $_SESSION['key']    = $key;
-        $_SESSION['output'] =
+        $_SESSION['vernam_input']  = $plainText;
+        $_SESSION['vernam_key']    = $key;
+        $_SESSION['vernam_output'] =
             $action === ENCRYPT
                 ? $cipher->encrypt($plainText, $key)
                 : $cipher->decrypt($plainText, $key);

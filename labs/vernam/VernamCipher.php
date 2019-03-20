@@ -75,20 +75,18 @@ class VernamCipher
 
         $resultChars = [];
         foreach ($chars1 as $i => $char) {
-            $char1Binary = decbin(ord($chars1[$i]));
-            $char2Binary = decbin(ord($chars2[$i]));
-            $char1Bits = str_split(str_pad($char1Binary, 7, '0', STR_PAD_LEFT));
-            $char2Bits = str_split(str_pad($char2Binary, 7, '0', STR_PAD_LEFT));
+            $ascii = (ord($chars1[$i])) ^ (ord($chars2[$i]));
 
-            $resultBits = [];
-            foreach ($char1Bits as $j => $bit) {
-                $bit1 = $char1Bits[$j];
-                $bit2 = $char2Bits[$j];
-                $resultBits[] = (int) ($bit1 xor $bit2);
+            $min = 32;
+            $max = 126;
+            if ($ascii > $max) {
+                $ascii = $ascii - $max;
+            }
+            if ($ascii < $min) {
+                $ascii = $ascii + $min;
             }
 
-            $resultCharBinary = implode('', $resultBits);
-            $resultChars[] = chr(bindec($resultCharBinary));
+            $resultChars[] = chr($ascii);
         }
         $result = implode('', $resultChars);
 
@@ -102,7 +100,7 @@ class VernamCipher
     public function makeKey(int $keyLength = self::KEY_LENGTH): string
     {
         try {
-            $bytes = random_bytes($keyLength);
+            $bytes     = random_bytes($keyLength);
             $this->key = substr(bin2hex($bytes), 0, $keyLength);
         } catch (\Exception $e) {
         }
