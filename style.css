@@ -17,6 +17,14 @@ input[type='submit'] {
     height: 40px;
 }
 
+ul {
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: inline-block;
+    text-align: left;
+}
+
 ul, li {
     list-style: none;
     margin: 0;
