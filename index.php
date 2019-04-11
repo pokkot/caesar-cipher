@@ -18,6 +18,7 @@
     <li><a href="labs/vernam/index.php">2.1) Vernam</a></li>
     <li><a href="labs/rc4/index.php">2.2) RC4</a></li>
     <li><a href="labs/md5/index.php">3) MD5 hash-function</a></li>
+    <li><a href="labs/RSA/index.php">4) RSA</a></li>
 </ul>
 
 <p class="author">by Oleg Evgrashin</p>
