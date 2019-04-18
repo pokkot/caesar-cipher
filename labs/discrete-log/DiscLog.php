@@ -25,8 +25,8 @@ class DiscLog
         $this->p = $p;
 
         $result = 0;
-        for ($x = 0; $x < $p - 1; $x++) {
-            if ($y === $this->modularPow($a, $x, $p)) {
+        for ($x = 0; $x < $p; $x++) {
+            if ($a == $this->modularPow($y, $x, $p)) {
                 $result = $x;
                 break ;
             }
