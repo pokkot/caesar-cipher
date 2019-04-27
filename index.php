@@ -19,9 +19,11 @@
     <li><a href="labs/rc4/index.php">2.2) RC4</a></li>
     <li><a href="labs/md5/index.php">3) MD5 hash-function</a></li>
     <li><a href="labs/RSA/index.php">4) RSA</a></li>
-    <li>5) PKI</li>
+    <li style="color: lightgray">5) PKI</li>
     <li><a href="labs/BSGS/index.php">6.1) Baby-step giant-step</a></li>
     <li><a href="labs/discrete-log/index.php">6.2) Discrete logarithm</a></li>
+    <li style="color: lightgray">7) Blockchain</li>
+    <li><a href="labs/LSB/index.php">8) LSB (stenography)</a></li>
 </ul>
 
 <p class="author">by Oleg Evgrashin</p>
