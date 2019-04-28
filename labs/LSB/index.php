@@ -33,7 +33,7 @@
     <textarea name="plain-text" id="plain-text" cols="60" rows="8"><? echo $_SESSION['lsb_input'] ?? "The basic idea in Image Steganography lies in the fact that a change in the Least Significant Bit (LSB) is not detected by human eye. So we modify the LSB of RGB value to store the hidden message in the message without affecting the color of the image."?></textarea>
 
     <label for="filename">Image to hide the message / to get hidden message:</label>
-    <input type="file" id="file" name="file" accept="image/png,image/jpeg">
+    <input type="file" id="file" name="file" accept="image/jpeg">
 
     <input type="submit" name="action" value="Encrypt">
     <input type="submit" name="action" value="Decrypt">
