@@ -11,66 +11,78 @@ class BSGS
     private $log = [];
 
     /**
+     * @param integer $y
      * @param integer $a
-     * @param integer $b
-     * @param integer $m
+     * @param integer $p
      * @return integer
      */
-    public function calc(int $a, int $b, int $m): int
+    public function calc(int $y, int $a, int $p): int
     {
-        $this->y = $a;
-        $this->a = $b;
-        $this->p = $m;
+        $this->y = $y;
+        $this->a = $a;
+        $this->p = $p;
 
-        $this->log[] = sprintf('a = %d, b = %d, m = %d', $a, $b, $m);
+        $m = (int) sqrt((float) $p) + 1;
+        $k = $m - 1;
 
-        $n = (int) sqrt((float) $m) + 1;
-        $this->log[] = sprintf('n = sqrt(m) + 1 = %d', $n);
+        $this->log[] = sprintf('y = %d, a = %d, p = %d', $y, $a, $p);
+        $this->log[] = sprintf('m = %d, k = %d', $m, $k);
+        $this->log[] = '';
 
-        $an = 1; // a ^ n
-        for ($i = 0; $i < $n; ++$i) {
-            $an = ($an * $a) % $m;
-        }
-        $this->log[] = sprintf('a^n = %d', $an);
+        $result = -1;
 
-        $vals = [];
-        $this->log[] = '==Giant steps:==';
-        $this->log[] = 'gs[i] = a^(n*i)  mod p';
-        $this->log[] = '===';
-        for ($i = 1, $cur = $an; $i <= $n; ++$i) {
-            $this->log[] = sprintf('gs[%d], val = %d', $i, $cur);
-            if (!key_exists($cur, $vals)) {
-                $vals[$cur] = $i;
-            }
-
-            $cur = ($cur * $an) % $m;
+        $this->log[] = '-- Baby steps --';
+        $this->log[] = 'bs[j] = b*a^i mod p';
+        $babySeries = [];
+        for ($i = 0; $i < $m - 1; $i++) {
+            $babySeries[$i] = ($this->modularPow($a, $i, $p) * $y) % $p;
+            $this->log[] = sprintf('[%d]%d', $i, $babySeries[$i]);
         }
 
-        $this->log[] = '==Baby steps:==';
-        $this->log[] = 'bs[j] = b*a^j mod p';
-        $this->log[] = '===';
-        for ($i = 0, $cur = $b; $i <= $n; ++$i) {
-            $this->log[] = sprintf('bs[%d], val = %d', $i, $cur);
-            if (key_exists($cur, $vals)) {
-                $ans = $vals[$cur] * $n - $i;
+        $this->log[] = '';
+        $this->log[] = '-- Giant steps --';
+        $this->log[] = 'gs[i] = a^(m*j) mod p';
+        $giantSeries = [];
+        for ($j = 1; $j < $k; $j++) {
+            $giantSeries[$j] = $this->modularPow($a, $m * $j, $p);
+            $this->log[] = sprintf('[%d]%d', $j, $giantSeries[$j]);
 
+            $i = array_search($giantSeries[$j], $babySeries);
+            if ($i) {
+                $result = $j * $m - $i;
+                $this->log[] = '';
                 $this->log[] = 'bs[i] == gs[j]';
-                $this->log[] = sprintf('x = n * j - i == %d', $ans);
-                $this->log[] = sprintf('x = %d * %d - %d == %d', $n, $vals[$cur], $i, $ans);
-
-                if ($ans < $m) {
-                    return $ans;
-                }
+                $this->log[] = sprintf('x = i * m - j == %d', $result);
+                $this->log[] = sprintf('x = %d * %d - %d == %d', $i, $giantSeries[$j], $j, $result);
+                break;
             }
-
-            $cur = ($cur * $a) % $m;
         }
 
-        return -1;
+        return $result;
     }
 
     public function getLog()
     {
         return $this->log;
+    }
+
+    /**
+     * @param integer $b base
+     * @param integer $e exponent
+     * @param integer $m modulus
+     * @return integer
+     */
+    private function modularPow(int $b, int $e, int $m): int
+    {
+        $result = 1;
+        while ($e > 0) {
+            if (($e % 2) == 1) {
+                $result = ($result * $b) % $m;
+            }
+            $e >>= 1;
+            $b = ($b * $b) % $m;
+        }
+
+        return $result;
     }
 }
