@@ -24,16 +24,18 @@ class DiscLog
         $this->a = $a;
         $this->p = $p;
 
+        $pow = 0;
         $result = 0;
-        for ($x = 0; $x < $p; $x++) {
-            if ($a == $this->modularPow($y, $x, $p)) {
+        for ($x = 1; $x < $p; $x++) {
+            $pow = $this->modularPow($a, $x, $p);
+            if ($y == $pow) {
                 $result = $x;
                 break ;
             }
-            $this->log[] = sprintf('%d != %d ^ %d mod %d', $y, $a, $x, $p);
+            $this->log[] = sprintf('%d != %d ^ %d mod %d != %d ^ %d', $y, $a, $x, $p, $a, $pow);
         }
 
-        $this->log[] = sprintf('%d == %d ^ %d mod %d', $y, $a, $x, $p);
+        $this->log[] = sprintf('%d == %d ^ %d mod %d != %d ^ %d', $y, $a, $x, $p, $a, $pow);
         $this->result = $result;
 
         return $result;
