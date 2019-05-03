@@ -48,7 +48,7 @@ class BSGS
             $this->log[] = sprintf('[%d]%d', $j, $giantSeries[$j]);
 
             $i = array_search($giantSeries[$j], $babySeries);
-            if ($i) {
+            if (false !== $i) {
                 $result = $j * $m - $i;
                 $this->log[] = '';
                 $this->log[] = 'bs[i] == gs[j]';
