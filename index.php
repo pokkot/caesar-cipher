@@ -22,7 +22,7 @@
     <li style="color: lightgray">5) PKI</li>
     <li><a href="labs/BSGS/index.php">6.1) Baby-step giant-step</a></li>
     <li><a href="labs/discrete-log/index.php">6.2) Discrete logarithm</a></li>
-    <li style="color: lightgray">7) Blockchain</li>
+    <li><a href="labs/nonce-calculating/index.php">7) Blockchain (mining procedure)</a></li>
     <li><a href="labs/LSB/index.php">8) LSB (steganography)</a></li>
 </ul>
 
