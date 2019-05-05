@@ -34,10 +34,10 @@
         <form action="handler.php" method="post" class="upload-form" enctype="multipart/form-data">
 
             <label for="block_data">Block data:</label><br>
-            <textarea disabled name="block_data" id="block_data" cols="80" rows="3"><?php echo $_SESSION['block_data'] ?? '' ?></textarea>
+            <textarea name="block_data" id="block_data" cols="80" rows="3"><?php echo $_SESSION['block_data'] ?? '0x1903a30' ?></textarea>
 
             <label for="target">Target:</label><br>
-            <textarea disabled name="target" id="target" cols="80" rows="3"><?php echo $_SESSION['target'] ?? '' ?></textarea>
+            <textarea name="target" id="target" cols="80" rows="3"><?php echo $_SESSION['target'] ?? '0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF' ?></textarea>
 
             <input type="submit" name="action" value="Start">
         </form>
